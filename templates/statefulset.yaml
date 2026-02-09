@@ -83,6 +83,12 @@ spec:
               value: {{ $threads | quote }}
             - name: RUST_LOG
               value: info
+            {{- if .Values.config.delegatedDomain }}
+            - name: CONDUWUIT_WELL_KNOWN__CLIENT
+              value: "https://{{ .Values.config.delegatedDomain }}"
+            - name: CONDUWUIT_WELL_KNOWN__SERVER
+              value: "{{ .Values.config.delegatedDomain }}:443"
+            {{- end }}
             {{- range .Values.extraEnv }}
             - name: {{ .name | quote }}
               value: {{ .value | quote }}

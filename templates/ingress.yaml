@@ -31,9 +31,24 @@ spec:
       {{- range .Values.ingress.hosts }}
         - {{ . }}
       {{- end }}
+      {{- if .Values.config.delegatedDomain }}
+        - {{ .Values.config.server_name }}
+      {{- end }}
       secretName: {{ $fullName }}-tls
   {{- end }}
   rules:
+    {{- if .Values.config.delegatedDomain }}
+    - host: {{ .Values.config.server_name }}
+      http:
+        paths:
+          - path: "/.well-known/matrix"
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $servicePort }}
+    {{- end }}
     {{- if $new }}
     {{- range .Values.ingress.hosts }}
     - host: {{ . }}
