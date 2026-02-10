@@ -3,18 +3,26 @@ image:
   tag: v1.4.1
   pullPolicy: IfNotPresent
 
+## The keys under config must be valid for the configuration file of
+## Conduwuit, Tuwunel, or Continuwuity as this section is converted into
+## the configuration file
 config:
-  server_name: "example.org"
-  max_request_size: "20000000"
-  allow_registration: false
-  # You must set registration token below to enable registrations
-  registration_token: "supa-dupa-secret-token"
-  allow_federation: false
-  trusted_servers: []
-  ## If you are delegating your domain, uncomment the next line and add your
-  ## delegated domain.  This will add it to the ingress and setup the proper
-  ## environment variables.
-  # delegatedDomain: example.example.org
+  global:
+    max_request_size: "24 MiB"
+    allow_registration: "true"
+    registration_token: "supa-dupa-secret-token"
+    allow_federation: "true"
+    trusted_servers: ["mystic.horse"]
+  global.tls: {}
+  global.well_known:
+    client: "https://matrix.example.com"
+    server: "matrix.example.com:443"
+  global.blurhashing: {}
+  global.ldap: {}
+  global.antispam: {}
+  global.antispam.meowlnir: {}
+  global.antispam.draupnir: {}
+
 
 extraEnv: []
 
