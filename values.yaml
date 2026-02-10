@@ -58,8 +58,10 @@ ingress:
   #    nginx.ingress.kubernetes.io/proxy-body-size: "0"
   annotations: {}
   path: /
-  hosts:
-    - matrix.example.com
+  ## Your server_name and delegated domain (if any) are already added
+  ## to the Ingress
+  extraHosts: []
+  ## If you enable TLS, don't forget to set annotations for cert-manager
   tls: false
 
 ## Persist configuration to a persistent volume
