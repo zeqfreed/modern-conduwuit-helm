@@ -1,3 +1,8 @@
+## This is where people will reach you at.  If you set this to
+## example.com, your usernames will look like steve:example.com.
+## You probably want this to be your apex domain.
+server_name: ""
+
 image:
   repository: ghcr.io/matrix-construct/tuwunel
   tag: v1.4.1

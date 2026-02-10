@@ -54,7 +54,7 @@ spec:
             - name: TOKIO_WORKER_THREADS
               value: {{ $threads | quote }}
             - name: CONDUWUIT_SERVER_NAME
-              value: {{ .Values.config.server_name | quote }}
+              value: {{ required "You must set a server name otherwise no one will be able to reach you" .Values.server_name | quote }}
             - name: CONDUWUIT_DATABASE_PATH
               value: "/data/db"
             - name: CONDUWUIT_PORT
