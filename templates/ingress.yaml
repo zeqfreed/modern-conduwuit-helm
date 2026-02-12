@@ -42,7 +42,7 @@ spec:
   {{- end }}
   rules:
     {{- if $isDelegatedDomain }}
-    - host: {{ $delegatedDomain }}
+    - host: {{ .Values.server_name }}
       http:
         paths:
           - path: "/.well-known/matrix"
@@ -60,8 +60,11 @@ spec:
               servicePort: {{ $servicePort }}
               {{- end }}
     {{- end }}
-    {{- with .Values.server_name }}
-    - host: {{ . }}
+    {{- if $isDelegatedDomain }}
+    - host: {{ $delegatedDomain }}
+    {{- else }}
+    - host: {{ .Values.server_name }}
+    {{- end }}
       http:
         paths:
           - path: {{ $ingressPath }}
@@ -78,7 +81,6 @@ spec:
               serviceName: {{ $fullName }}
               servicePort: {{ $servicePort }}
               {{- end }}
-    {{- end }}
     {{- range .Values.ingress.extraHosts }}
     - host: {{ . }}
       http:
