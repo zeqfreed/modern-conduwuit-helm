@@ -13,7 +13,6 @@ image:
 ## the configuration file
 config:
   global:
-    max_request_size: "24 MiB"
     allow_registration: "true"
     registration_token: "supa-dupa-secret-token"
     allow_federation: "false"
@@ -26,9 +25,9 @@ config:
     #  server: "matrix.example.com:443"
     blurhashing: {}
     ldap: {}
-    antispam:
-      meowlnir: {}
-      draupnir: {}
+    antispam: {}
+      # meowlnir: {}
+      # draupnir: {}
 
 
 extraEnv: []

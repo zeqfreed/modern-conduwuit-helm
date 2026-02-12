@@ -46,6 +46,8 @@ spec:
             - mountPath: /data
               name: data
               subPath: data
+            - mountPath: /data/config
+              name: config
           securityContext:
             capabilities:
               add:
@@ -53,6 +55,8 @@ spec:
           env:
             - name: TOKIO_WORKER_THREADS
               value: {{ $threads | quote }}
+            - name: CONDUWUIT_CONFIG
+              value: "/data/config/config.toml"
             - name: CONDUWUIT_SERVER_NAME
               value: {{ required "You must set a server name otherwise no one will be able to reach you" .Values.server_name | quote }}
             - name: CONDUWUIT_DATABASE_PATH
@@ -91,4 +95,6 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-
+        - name: config
+          configMap:
+            name: {{ template "tuwunel.fullname" . }}-configmap
