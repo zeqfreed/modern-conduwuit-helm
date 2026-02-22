@@ -75,10 +75,10 @@ spec:
             {{- end }}
           readinessProbe:
             httpGet:
-              path: /_matrix/federation/v1/version
+              path: /_matrix/client/versions
               port: http
-            periodSeconds: 2
-            failureThreshold: 5
+            periodSeconds: 10
+            failureThreshold: 3
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       nodeSelector:
