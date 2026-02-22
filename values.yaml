@@ -25,7 +25,7 @@ config:
     #  server: "matrix.example.com:443"
     blurhashing: {}
     ldap: {}
-    antispam: {}
+      # antispam: {}
       # meowlnir: {}
       # draupnir: {}
 

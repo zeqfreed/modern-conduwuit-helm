@@ -55,17 +55,17 @@ spec:
           env:
             - name: TOKIO_WORKER_THREADS
               value: {{ $threads | quote }}
-            - name: CONDUWUIT_CONFIG
+            - name: TUWUNEL_CONFIG
               value: "/data/config/config.toml"
-            - name: CONDUWUIT_SERVER_NAME
+            - name: TUWUNEL_SERVER_NAME
               value: {{ required "You must set a server name otherwise no one will be able to reach you" .Values.server_name | quote }}
-            - name: CONDUWUIT_DATABASE_PATH
+            - name: TUWUNEL_DATABASE_PATH
               value: "/data/db"
-            - name: CONDUWUIT_PORT
+            - name: TUWUNEL_PORT
               value: "80"
-            - name: CONDUWUIT_ADDRESS
+            - name: TUWUNEL_ADDRESS
               value: "0.0.0.0"
-            - name: CONDUWUIT_ROCKSDB_PARALLELISM_THREADS
+            - name: TUWUNEL_ROCKSDB_PARALLELISM_THREADS
               value: {{ $threads | quote }}
             - name: RUST_LOG
               value: info
